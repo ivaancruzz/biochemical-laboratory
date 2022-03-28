@@ -1,0 +1,45 @@
+<div class="col-md-12 p-3 table-responsive">
+    <div class="row">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text cont-ordenar_por bg-primary" for="inputGroupSelect01">Ordenar por</label>
+        </div>
+        <select class="custom-select cont-select" id="select"  onchange="select()">
+          <option id="ordenar_fecha" value="ordenar_fecha">Ultimos registrados</option>
+          <option id="ordenar_nombre" value="ordenar_nombre"  >Nombre ( A a la Z )</option>
+          <option id="ordenar_apellido" value="ordenar_apellido" >Apellido ( A a la Z )</option>
+        </select>
+      </div>
+    </div>
+      <div class="row justify-content-center" id="mostrar_tabla">
+        
+      </div>
+        
+      
+  </div>
+  {% block extrajs %}
+  <script>    
+    
+   
+      
+    url = '../../paciente/ver_todos/';
+    $('#mostrar_tabla').load( url )
+      
+
+    function select(){  
+        let select = document.getElementById('select').value;
+        let option_actual = document.getElementById(select);
+        
+       
+        if( option_anterior != null ){
+            option_anterior.removeAttribute('selected', '');
+        }
+        option_actual.setAttribute('selected', '')
+        option_anterior = option_actual;
+        
+        cambiarContenedor( select )
+        
+    }
+    
+  </script>
+  {% endblock %}

@@ -1,0 +1,30 @@
+
+{% if paciente %}
+
+<div class="col-md-12 mt-3 m-0 ">
+    <div class="alert alert-success" role="alert">
+        ¡Se encontraron resultados!
+    </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <center>
+          <h5 class="card-title">{{paciente.nombre}} {{paciente.apellido}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{paciente.dni}}</h6>
+          <button onclick="cambiarContenedor( 'ver_paciente' , '{{paciente.dni}}' )" class="btn btn-primary ">Ver</button>
+          <a href="{% url 'pacientes:editar_paciente' paciente.dni %}" class="btn btn-warning ">Editar</a>
+          <a href="{% url 'pacientes:eliminar_paciente' paciente.dni %}" class="btn btn-danger ">Eliminar</a>
+        </center>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="col-md-12 mt-3 m-0 ">
+    <div class="row justify-content-center text-center">
+        <h1>El dni <span class="text-primary">{{dato}}</span> no existe <i class="fas fa-sad-tear"></i></h1>
+        
+    </div>
+
+</div>
+
+{% endif %}
+

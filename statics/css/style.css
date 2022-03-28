@@ -1,0 +1,141 @@
+.bg-0{
+    background-color: #433a9c;
+}
+
+.bg-1{
+    background-color: #C0392B;
+}
+.bg-2{
+    background-color: #9B59B6;
+}
+.bg-3{
+    background-color: #2892da;
+}
+.bg-4{
+    background-color: #1ABC9C;
+}
+.bg-5{
+    background-color: #27AE60;
+}
+.bg-6{
+    background-color: #F1C40F;
+}
+.bg-7{
+    background-color: #E67E22;
+}
+.bg-8{
+    background-color: #95A5A6;
+}
+.bg-9{
+    background-color: #369400;
+}
+
+.text-0{
+    color: #433a9c;
+}
+
+.text-1{
+    color: #C0392B;
+}
+.text-2{
+    color: #9B59B6;
+}
+.text-3{
+    color: #2892da;
+}
+.text-4{
+    color: #1ABC9C;
+}
+.text-5{
+    color: #27AE60;
+}
+.text-6{
+    color: #F1C40F;
+}
+.text-7{
+    color: #E67E22;
+}
+.text-8{
+    color: #95A5A6;
+}
+.text-9{
+    color: #369400;
+}
+
+body{
+    background-color: #EBECEC;
+}
+
+.btn-privado{
+    font-size: 13px;
+    width: 150px;
+    padding: 10px;
+    border-radius: 30px;
+}
+.btn-estudios{
+    font-size: 13px;
+    width: 150px;
+    padding: 5px;
+    border-radius: 30px;
+    color: white;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.btn-estudios:hover{
+    color: whitesmoke;
+}
+
+.btn-paciente{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detalle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  #eaeaea;
+    height: 50vh;
+
+}
+.btn-search, .cont-select{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
+}
+
+.contenedor{
+    height: 80%;
+    overflow-y: auto;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.cont-ordenar_por{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: none;
+    color: whitesmoke;
+}
+
+.btn_ver:hover{
+    color: #4582ec;
+}
+
+.centrar{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#alerta{
+    border-radius: 30px;
+}
+
+label{
+    font-size: 15px;
+}

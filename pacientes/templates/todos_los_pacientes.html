@@ -1,0 +1,65 @@
+<div class="col-md-6">     
+  <div class="row">
+    <table class="table table-sm table-striped ">
+           <thead class="thead-dark">
+             <tr>
+               <th scope="col">Nombre</th>
+               <th scope="col">Dni</th>
+             </tr>
+           </thead>
+           <tbody> <!---TBODY ES EL CUERPO DE LA TABLA-->
+   
+               {% for i in pacientes %} <!---BUCLE PARA i = 0, hasta el numero de pacientes que contenga( ej: 5 )-->
+               <tr><!---TR ES la fila que tiene cada paciente-->
+                   <th scope="row" ><a id="ver" class="btn_ver" type="button" onclick="cambiarContenedor( 'ver_paciente', '{{i.dni}}' )">{{i.nombre}} {{i.apellido}}</a></th><!---Nombre y apellido-->
+                   <th scope="row">{{i.dni}}</th><!---Dni-->
+               </tr>
+               {% endfor %} </th><!---Fin para-->
+             
+           </tbody>
+         </table>
+   </div>
+
+   <div class="row justify-content-center mb-2">
+    
+     {% if page_obj.has_previous %}
+     <!--<span><button onclick="cambio('?ordering={{order}}&page=1')">Primera</button></span>-->
+     <button class="btn btn-primary btn-paciente" type="button" onclick="cambio('?ordering={{order}}&page={{ page_obj.previous_page_number }}')"><i class="fas fa-caret-left"></i></button>
+     {% endif %}
+    
+    <div class="col-auto">
+      <span>{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    </div>
+
+     {% if page_obj.has_next %}
+     <button class="btn btn-primary btn-paciente" type="button" onclick="cambio('?ordering={{order}}&page={{ page_obj.next_page_number }}')" ><i class="fas fa-caret-right"></i></button>
+     <!--<span><button onclick="cambio('?ordering=-fecha_registro&page={{ page_obj.paginator.num_pages }}')" >Ultima</button></span>-->
+     {% endif %}
+    </div>
+  </div>
+   
+
+  
+
+</div>
+
+
+
+    <script>
+      
+
+      tippy('#ver', {
+          content: 'Ver registro',
+          placement: 'left',
+      });
+
+      tippy('#copiar_dni', {
+          content: 'Copiar DNI',
+          placement: 'right',
+      });
+
+      function cambio( valor ){
+        url = '../../paciente/ver_todos/'+valor;
+        $('#mostrar_tabla').load( url )
+      }
+    </script>

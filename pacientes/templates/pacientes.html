@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12 pt-3">
+    
+    <div class="row align-items-center" >
+        <div class="col-auto text-center">
+            <a href='#' id="crear_paciente" onclick='cambiarContenedor( "nuevo_paciente" )' class="btn btn-paciente btn-success">
+                <i class="fas fa-plus" ></i>
+                
+            </a>
+        </div>
+        <div class="col-auto">
+            <a href='#' id="ver_pacientes"  onclick="cambiarContenedor( 'ver_pacientes' )" class="btn btn-paciente btn-primary">
+                <i class="far fa-eye"></i>
+            </a>
+        </div>
+        <div class="col">
+            
+                <div class="input-group w-100">
+                    <input type="number" class="form-control" id="dni" placeholder="Buscar por dni" style="border-top-left-radius: 30px;border-bottom-left-radius: 30px;">
+                    <div class="input-group-append">
+                   
+                        <button id="buscar" onclick="buscarPaciente( 'en_buscar_paciente' )" class="btn btn-search btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+            
+        </div>
+    </div>
+    <div class="row p-3" id="contenedor_dinamico">
+        <div  class="col detalle" >
+            <h1>Pacientes</h1>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block extrajs %}
+
+<script src="{% static 'js/buscar_paciente.js' %}"></script>
+<script src="{% static 'js/enviar_json.js' %}"></script>
+{% endblock %}

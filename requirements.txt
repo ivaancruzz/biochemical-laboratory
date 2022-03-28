@@ -1,0 +1,12 @@
+asgiref
+dj-static
+Django
+django-crispy-forms
+numpy
+pandas
+python-dateutil
+pytz
+six
+sqlparse
+static3
+waitress

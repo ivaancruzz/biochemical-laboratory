@@ -1,0 +1,21 @@
+<div class="col-12 mb-3 text-left ">
+  <h5 class="text-primary">Nueva caratula: </h5>
+</div>
+<div class="col-12">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Solicitante</label>
+            <input type="text" class="form-control form-control-sm" id="solicitante" placeholder="Escribe algo...">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Paciente</label>
+            <input type="text" class="form-control form-control-sm" id="paciente"
+                placeholder="Escribe algo...">
+        </div>
+    </div>
+
+    <button id="crear_caratula" class="btn btn-primary" type="button">Crear caratula</button>
+</div>
+{% load static %}
+<script src="{% static 'js/jspdf.min.js' %}"></script>
+<script src="{% static 'js/nueva_caratula.js' %}"></script>

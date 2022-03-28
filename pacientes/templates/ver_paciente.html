@@ -1,0 +1,178 @@
+{% load static %}
+{% block content %}
+
+<div class="col-md-3 p-3 border-right">
+    <div class="row justify-content-center">
+            <h4 id="name_paciente" >{{paciente.nombre}} {{paciente.apellido}}</h4>  
+    </div>
+
+    <div class="row justify-content-center">
+        <footer class="blockquote-footer">Dni: <cite title="Source Title" class="text-primary" id="dni_copy">{{paciente.dni}}</cite></footer>
+    </div>
+    <div class="row justify-content-center">
+        <footer class="blockquote-footer">Celular: <cite title="Source Title" class="text-primary"><a href="tel:{{paciente.celular}}"> {{paciente.celular}}</a></cite></footer>
+    </div>
+    <div class="row justify-content-center">
+        {% if paciente.direccion %}
+        {% else %}
+        <footer class="blockquote-footer">Direccion: <cite title="Source Title" class="text-muted">Sin registrar</cite></footer>
+        {% endif %}
+    </div>
+    <div class="row justify-content-center">
+        <footer class="blockquote-footer">Registrado el: <cite title="Source Title" class="text-primary"> {{paciente.fecha_registro.day}} / {{paciente.fecha_registro.month}} / {{paciente.fecha_registro.year}}</cite></footer>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-auto">
+            <a onclick="cambiarContenedor( 'editar_paciente', '{{paciente.dni}}')" id="edit" class="btn btn-paciente btn-warning">
+                <i class="far fa-edit"></i>
+            </a>
+        </div>
+        <div class="col-auto">
+            <a  onclick="cambiarContenedor( 'eliminar_paciente', '{{paciente.dni}}')" id="delete"  class="btn btn-paciente btn-danger" >
+                <i class="far fa-trash-alt"></i>
+            </a>
+        </div>
+    </div>
+
+               
+
+       
+</div>
+<div class="col-md-9 p-3">
+    {% if estudios_del_paciente %}
+
+    
+
+    <div class="row">
+    {% for ver in estudios_del_paciente %}
+        <div class="col-md-4 p-2" id="contenedor_estudios">
+            <div class="row justify-content-center">
+                <div class="col-10 text-dark border rounded p-2">
+                    <small>Análisis</small>
+                    {% if ver.categoria is 0 %}
+                    <h6 class="text-light"><span class="pl-1  bg-0 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 1 %}
+                    <h6 class="text-light"><span class="pl-1  bg-1 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 2 %}
+                    <h6 class="text-light"><span class="pl-1  bg-2 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 3 %}
+                    <h6 class="text-light"><span class="pl-1  bg-3 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 4 %}
+                    <h6 class="text-light"><span class="pl-1  bg-4 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 5 %}
+                    <h6 class="text-light"><span class="pl-1  bg-5 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 6 %}
+                    <h6 class="text-light"><span class="pl-1  bg-6 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 7 %}
+                    <h6 class="text-light"><span class="pl-1  bg-7 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 8 %}
+                    <h6 class="text-light"><span class="pl-1  bg-8 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+                    {% elif ver.categoria is 9 %}
+                    <h6 class="text-light"><span class="pl-1  bg-9 pr-4 rounded-right">{{ver}} <i class="fas fa-poll-h"></i></span></h6>
+
+                    {% endif %}
+                    <hr>
+                    <footer class="blockquote-footer text-muted">Hecho el: <cite title="Source Title" class="border border-primary text-muted rounded pl-2 pr-2">{{ver.fecha_estudio.day}} / {{ver.fecha_estudio.month}} / {{ver.fecha_estudio.year}}</cite></footer>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="col-auto"><button id="ver_estudio_tippy" onclick="ver_estudio('{{ver.id}}', '{{ver.categoria}}', '{{ver.paciente_id}}')"  class="btn btn-paciente btn-primary mb-2"><i class="far fa-eye"></i></button>
+                        </div>
+                        <div class="col-auto"><button id="editar_estudio" onclick="editar_estudio('{{ver.id}}', '{{ver.categoria}}' )"  class="btn btn-paciente btn-warning mb-2"><i class="far fa-edit"></i></button>
+                        </div>
+                        <div class="col-auto"><button id="eliminar_estudio" onclick="eliminar_estudio('{{ver.id}}', '{{ver.categoria}}' )"  class="btn btn-paciente btn-danger mb-2"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{% else %}
+    <h5 class="text-center text-muted">Sin estudios</h5>
+{% endif %}
+
+</div>
+{% block extrajs %}
+
+<script>
+    copy_dni = document.querySelector('#dni_copy').innerText;
+    name_paciente = document.querySelector('#name_paciente').innerText;
+
+    mostrar_texto = `${copy_dni} - ${name_paciente}` 
+    dom_mostrar_dni.innerText = mostrar_texto;
+    localStorage.setItem( 'dni_copy', mostrar_texto );
+
+    tippy('#edit', {
+        content: 'Editar paciente',
+        placement: 'bottom',
+    });
+    
+     tippy('#delete', {
+        content: 'Eliminar paciente',
+        placement: 'bottom',
+    });
+
+    tippy('#ver_estudio_tippy', {
+        content: 'Ver estudio',
+        placement: 'bottom',
+    });
+
+    tippy('#editar_estudio', {
+        content: 'Editar estudio',
+        placement: 'bottom',
+    });
+
+    tippy('#eliminar_estudio', {
+        content: 'Eliminar estudio',
+        placement: 'bottom',
+    });
+
+    function ver_estudio( id, categoria, paciente_id ){
+        let url = `../../estudio/ver/${id}/${categoria}/${paciente_id}/`
+
+        $('#ver_estudio').load( url , function(){
+            $(this).modal('show');
+                    
+        })
+    }
+
+    function editar_estudio( id, categoria ){
+        let url = `../../estudio/editar/${id}/${categoria}/`
+
+        $('#modal_editar_estudio').load( url , function(){
+            $(this).modal('show');
+                    
+        })
+    }
+
+    function eliminar_estudio( id, categoria ){
+        let url = `../../estudio/eliminar/${id}/${categoria}/`
+
+        $('#modal_eliminar_estudio').load( url , function(){
+            $(this).modal('show');
+                    
+        })
+    }
+
+
+
+    
+
+</script>
+<script src="{% static 'js/jspdf.min.js' %}"></script>
+<script src="{% static 'js/jspdf.plugin.autotable.js' %}"></script>
+
+
+{% endblock %}
+
+<!-- Modal -->
+    <div class="modal fade " id="ver_estudio" role="dialog" ></div>
+    <div class="modal fade" id="modal_editar" ></div>
+    <div class="modal fade" id="modal_eliminar"></div>
+    <div class="modal fade" id="modal_editar_estudio"></div>
+    <div class="modal fade" id="modal_eliminar_estudio"></div>
+
+{% endblock %}

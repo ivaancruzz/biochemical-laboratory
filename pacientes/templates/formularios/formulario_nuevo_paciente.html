@@ -1,0 +1,47 @@
+
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_titulo">El DNI no existe, debe registrarlo</h5>
+        </div>
+        <div class="modal-body">
+          <div class="col p-3">
+            <div class="row justify-content-center" id="contenido_modal">
+              <form action="" method="POST" id="formulario_nuevo_paciente">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+            
+                  {{formulario.nombre}}
+                  {{formulario.apellido}}
+                </div>
+                <div class="form-group mb-3" id="input-dni">
+                  {{formulario.dni}}
+                  <small id="dni_small" class="form-text text-muted" style="display: none;"></small>
+                </div>
+                <div class="input-group mb-3">
+          
+                  {{formulario.celular}}
+                </div>
+          
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="btn-crear" type="button" class="btn btn-primary" onclick="enviar_formulario('paciente','creacion','formulario_nuevo_paciente')">Crear</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //Seteamos el dni para que no se pueda modificar
+        var dni_paciente = document.getElementById('id_paciente').value;
+
+        var dni_nuevo_paciente = document.getElementById('id_dni');
+        dni_nuevo_paciente.setAttribute('value', dni_paciente );
+        dni_nuevo_paciente.setAttribute('readonly', '');
+        
+    </script>
+

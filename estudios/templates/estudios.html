@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12 pt-3">
+    
+    <div class="row ">
+        <div class="col-2">
+            <div class="row">
+                <h6 class="text-muted">Nueva caratula:</h6>
+
+            </div>
+            <div class="row mb-4">
+                <a href='#'  class="btn btn-estudios bg-success" onclick="cambiarContenedor( 'nueva_caratula' )">
+                    Crear
+                </a>
+            </div>
+
+            <div class="row">
+                <h6 class="text-muted">Elige un estudio:</h6>
+            </div>
+                <div class="row">
+                    <a href='#'  class="btn btn-estudios bg-9" id="estudio_General" onclick='cambiarContenedor( "general" )'>
+                        General
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-8" id="estudio_Hemograma" onclick='cambiarContenedor( "hemograma" )'>
+                        Hemograma
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-0" id="estudio_Embarazada"  onclick="cambiarContenedor( 'embarazada' )">
+                        Embarazada
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-1" id="estudio_Hepatograma"  onclick="cambiarContenedor( 'hepatograma' )" >
+                        Hepatograma
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-2" id="estudio_Orina"  onclick="cambiarContenedor( 'orina' )">
+                        Orina
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-4" id="estudio_Proteinograma"  onclick="cambiarContenedor( 'proteinograma' )">
+                       Proteinograma
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-5"  id="estudio_Quimica"  onclick="cambiarContenedor( 'quimica' )">
+                        Quimica
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-6" id="estudio_Cultivo"  onclick="cambiarContenedor( 'cultivo' )">
+                        Urocultivo
+                    </a>
+                </div>
+                <div class="row">
+                    <a href='#' class="btn btn-estudios bg-7" id="estudio_Parasitologico"  onclick="cambiarContenedor( 'parasitologico' )">
+                        Parasitologico
+                    </a>
+                </div>
+        </div>
+        <div class="col-10">
+            <div class="row " id="contenedor_dinamico_estudios">
+                <div  class="col detalle" >
+                    <h1>Estudios</h1>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    
+    
+</div>
+{% endblock %}
+{% block extrajs %}
+<script>
+    let ESTUDIOS = [
+        'General',
+        'Hemograma',
+        'Embarazada',
+        'Hepatograma',
+        'Orina',
+        'Urocultivo',
+        'Proteinograma',
+        'Quimica',
+        'Cultivo',
+        'Parasitologico',
+    ]
+
+    ESTUDIOS.forEach(element => {
+        tippy('#estudio_' + element, {
+            content: 'Registrar estudio nuevo',
+            placement: 'right',
+        } )
+    });
+    
+
+    
+
+</script>
+{% endblock %}

@@ -1,0 +1,94 @@
+
+{% load static %}
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content text-light">
+                    {% if categoria_estudio is 0 %}
+                    <div class="modal-header bg-0">
+                    {% elif categoria_estudio is 1 %}
+                    <div class="modal-header bg-1">
+                    {% elif categoria_estudio is 2 %}
+                    <div class="modal-header bg-2">
+                    {% elif categoria_estudio is 3 %}
+                    <div class="modal-header bg-3">
+                    {% elif categoria_estudio is 4 %}
+                    <div class="modal-header bg-4">
+                    {% elif categoria_estudio is 5 %}
+                    <div class="modal-header bg-5">
+                    {% elif categoria_estudio is 6 %}
+                    <div class="modal-header bg-6">
+                    {% elif categoria_estudio is 7 %}
+                    <div class="modal-header bg-7">
+                    {% elif categoria_estudio is 8 %}
+                    <div class="modal-header bg-8">
+                    {% elif categoria_estudio is 9 %}
+                    <div class="modal-header bg-9">
+      {% endif %}
+      
+        <h5 class="modal-title" id="modal_titulo">Analisis {{nombre_estudio}} </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="col p-3">
+          <div class="row justify-content-center" id="contenido_modal">
+            <table class="table table-sm table-striped">
+                <thead>
+                  <tr>
+                    {% if categoria_estudio is not 9 %}
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Resultado</th>
+                    <th scope="col">Valores de referencia</th>
+                    {% else %}
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Resultado</th>
+                    {% endif %}
+                  </tr>
+                </thead>
+                <tbody>
+                      
+                    {% for k in resultados %}
+                        {% if categoria_estudio is 9 %}
+                          <tr>
+                              <td>{{k.0}}</td>
+                              <th scope="row">{{k.1}}</th>
+                          </tr>
+                        {% else %}
+                          <tr>
+                              <td>{{k.0}}</td>
+                              <th scope="row">{{k.1}}</th>
+                              <td>{{k.2}}</td>
+                          </tr>
+                        {% endif %}
+                        
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+            
+
+          </div>
+          {% if observacion is not None %}
+          
+          <div class="row text-dark">
+            <h5>Observaciones</h5>
+          </div>
+          <div class="row">
+            <div class="text-muted">
+              {{observacion}}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="imprimir( '{{fecha_estudio}}', '{{nombre_paciente}}', '{{nombre_estudio}}', '{{resultadosJS}}','{{observaciones_js}}' )">Imprimir <i class="fas fa-print"></i></button>
+        
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/imprimir_estudio.js' %}"></script>
+
+      
+ 

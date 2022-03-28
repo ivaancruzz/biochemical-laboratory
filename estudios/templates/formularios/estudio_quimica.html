@@ -1,0 +1,17 @@
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="col-12 mb-3 text-left text-muted">
+  <h5 class="text-5">Estudio quimica: </h5>
+</div>
+<div class="col-12">
+  {% crispy form %}
+  <button id="btn-crear" type="button" class="btn btn-primary" onclick="enviar_formulario('estudio','creacion','form-id-quimica', '5')">Guardar</button>
+
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="nuevo_paciente" role="dialog" ></div>
+  <script src="{% static 'js/buscar_paciente.js' %}"></script>
+  <script src="{% static 'js/enviar_json.js' %}"></script>
+{% endblock %}
